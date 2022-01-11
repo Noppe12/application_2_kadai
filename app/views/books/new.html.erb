@@ -1,0 +1,23 @@
+<h2 class="mt-3">New book</h2>
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <% @book.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
+<form action="/books" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="RdhBb1C9RkHQxD49gRH5l2iBrQRCORByC8Ow7p7OGqEsaYjbv0UeaDxUFlDO2verzHwW3f7PblbQargof5KNIw==" />
+  <%= form_with model: @book, local:true do |f| %>
+    <div class="form-group">
+      <label for="book_title">Title</label>
+      <div class="form-control book_title"><%= f.text_field :title %></div>
+    </div>
+    <div class="form-group">
+      <label for="book_opinion">Opinion</label>
+      <div class="form-control book_body"><%= f.text_area :body %></div>
+    </div>
+    <div class="form-group">
+      <div class="btn btn-success"><%= f.submit 'Create Book' %></div>
+    </div>
+  <% end %>
+</form>
